@@ -98,8 +98,8 @@ class FilterRecordFromSQL:
                 )
                 device_ids_query = (
                     f"""SELECT _id FROM {SQL_DEVICES_TABLE} WHERE """  # nosec
-                    """phone = '{self.request.phone_number}' OR """  # nosec
-                    """voicemail = '{self.request.voice_mail}'"""  # nosec
+                    f"""phone = '{self.request.phone_number}' OR """  # nosec
+                    f"""voicemail = '{self.request.voice_mail}'"""  # nosec
                 )
                 self.cursor.execute(device_ids_query)
                 device_ids = self.cursor.fetchall()
@@ -132,7 +132,7 @@ class FilterRecordFromSQL:
             app_logger.info("Fetching device details from MySQL for response model")
             _ = self.cursor.execute(
                 f"SELECT phone,voicemail FROM {SQL_DEVICES_TABLE} "  # nosec
-                "WHERE _id = {record['deviceId']}"  # nosec
+                f"WHERE _id = {record['deviceId']}"  # nosec
             )
             device_details = self.cursor.fetchone()
             app_logger.info("Device details fetched successfully for response model")

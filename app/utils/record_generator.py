@@ -243,7 +243,7 @@ def store_record_to_sql(records: List[dict]):
             cursor.execute(
                 "CREATE TABLE IF NOT EXISTS "  # nosec
                 f"{SQL_RECORDS_BKP_TABLE.format(date_format=datetime.now().strftime('%Y_%m_%d_%H_%M_%S'))}"  # nosec  # pylint: disable=line-too-long
-                " AS SELECT * FROM {SQL_RECORDS_TABLE}"  # nosec
+                f" AS SELECT * FROM {SQL_RECORDS_TABLE}"  # nosec
             )
             app_logger.info("Successfully moved existing records moved to backup table")
 
@@ -268,7 +268,7 @@ def store_record_to_sql(records: List[dict]):
             cursor.execute(
                 "CREATE TABLE IF NOT EXISTS "  # nosec
                 f"{SQL_DEVICES_BKP_TABLE.format(date_format=datetime.now().strftime('%Y_%m_%d_%H_%M_%S'))}"  # nosec  # pylint: disable=line-too-long
-                " AS SELECT * FROM {SQL_DEVICES_TABLE}"  # nosec
+                f" AS SELECT * FROM {SQL_DEVICES_TABLE}"  # nosec
             )
             app_logger.info("Successfully moved existing records moved to backup table")
 
