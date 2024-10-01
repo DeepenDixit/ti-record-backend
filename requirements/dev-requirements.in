@@ -1,0 +1,16 @@
+-c requirements.txt
+
+pip-tools
+black
+pre-commit
+pre-commit-hooks
+pylint
+isort
+autoflake
+bandit
+
+pytest
+pytest-cov
+pytest-asyncio
+freezegun
+httpx

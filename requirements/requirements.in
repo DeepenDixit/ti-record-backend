@@ -1,0 +1,12 @@
+randomtimestamp
+
+pydantic
+pydantic_settings
+humps
+
+fastapi
+
+uvicorn
+
+pymongo
+mysql-connector-python

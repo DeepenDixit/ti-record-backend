@@ -1,0 +1,45 @@
+[build-system]
+requires = [
+    "setuptools>=42",
+    "wheel"
+]
+build-backend = "setuptools.build_meta"
+
+[tool.pylint.messages_control]
+disable = "missing-module-docstring, too-few-public-methods"
+
+[tool.pylint.format]
+max-line-length = "88"
+
+[tool.black]
+line-length = 88
+target-version = ['py39']
+
+[tool.coverage.run]
+omit = [
+    "*tests*",
+    "*venv*"
+]
+
+[tool.coverage.html]
+directory = "coverage-reports/html"
+
+[tool.coverage.xml]
+output = "coverage-reports/coverage.xml"
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "pass"
+]
+
+[tool.pytest.ini_option]
+minversion = "6.0"
+addopts = "-ra -q"
+testpaths = [
+    "app/tests",
+]
+asyncio_mode = "auto"
+
+[tool.bandit.assert_used]
+skips = ["*_test.py", "*/test_*.py"]

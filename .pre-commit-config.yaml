@@ -1,0 +1,67 @@
+repos:
+  - repo: local
+    hooks:
+
+    - id: autoflake
+      name: Remove unused variables and imports
+      entry: autoflake
+      language: python
+      args:
+        [
+          "--in-place",
+          "--remove-all-unused-imports",
+          "--remove-unused-variables",
+          "--expand-star-imports",
+          "--ignore-init-module-imports",
+        ]
+      files: \.py$
+
+    - id: isort
+      name: Sorting import statements
+      entry: isort
+      language: python
+      args: ["--profile", "black", "--filter-files"]
+      files: \.py$
+
+    - id: black
+      name: Black Hook
+      entry: black
+      language: python
+      language_version: python
+      types: [python]
+
+    - id: pylint
+      name: Pylint Hook
+      entry: pylint
+      language: system
+      types: [ python ]
+
+    - id: end-of-file-fixer
+      name: Fix End Of Files
+      entry: end-of-file-fixer
+      language: python
+      language_version: python
+      types: [ python ]
+
+    - id: trailing-whitespace
+      name: Trim Trailing Whitespace
+      entry: trailing-whitespace-fixer
+      language: python
+      language_version: python
+      types: [ python ]
+
+    - id: pytest-check
+      name: Unit Tests
+      entry: pytest --cov=app --cov-report term-missing --cov-report=html app/tests
+      language: system
+      pass_filenames: false
+      always_run: true
+      files: \.py$
+    
+    - id: security-checks
+      name: Security Checks
+      entry: bandit
+      language: python
+      language_version: python
+      types: [ python ]
+      args: ["-c", "pyproject.toml"]
